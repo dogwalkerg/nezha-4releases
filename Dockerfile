@@ -13,6 +13,9 @@ RUN chmod +x /entrypoint.sh
 WORKDIR /dashboard
 COPY dist/dashboard-${TARGETOS}-${TARGETARCH} ./app
 
+# 修复 app 文件权限 - 添加这行
+RUN chmod 755 ./app
+
 VOLUME ["/dashboard/data"]
 EXPOSE 8008
 ARG TZ=Asia/Shanghai
